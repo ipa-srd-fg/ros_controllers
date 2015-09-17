@@ -81,8 +81,10 @@ boost::shared_ptr<urdf::Model> getUrdf(const ros::NodeHandle& nh, const std::str
   boost::shared_ptr<urdf::Model> urdf(new urdf::Model);
 
   std::string urdf_str;
+  std::string param_name_search;
+  nh.searchParam(param_name, param_name_search);
   // Check for robot_description in proper namespace
-  if (nh.getParam(param_name, urdf_str))
+  if (nh.getParam(param_name_search, urdf_str))
   {
     if (!urdf->initString(urdf_str))
     {
